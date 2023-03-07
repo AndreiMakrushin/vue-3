@@ -20,9 +20,11 @@
     }),
     showModal.value = false,
     errorMessage.value = "",
-    newNote.value = ""
+    newNote.value = "",
+    console.log(getRandomColor())
     
   }
+  
 </script>
 
 <template>
@@ -43,12 +45,15 @@
       <div class="card-container">
         <div 
         class="card" 
-        v-for="note in notes" 
+        v-for="(note, index) in notes" 
         :style="{backgroundColor: note.backgroundColor}"
         :key="note.id"
         >
           <p class="main-text">{{ note.text }}</p>
-          <p class="date">{{ note.date }}</p>
+          <div class="low">
+            <p class="date">{{ note.date }}</p>
+            <button class="delbtn" @click="notes.splice(index,1)"><img src="https://ae04.alicdn.com/kf/H3a5a65f16ad548a98e66db81913d1e40x/-.jpg"/></button>
+          </div>
         </div>
       </div>
     </div>
@@ -166,5 +171,18 @@ header button{
 .modal .close:hover{
   background-color: grey;
   transition: .3s;
+}
+.delbtn{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.low{
+  justify-content: center;
+  align-items: center;
+}
+img{
+  width: 30px;
 }
 </style>
